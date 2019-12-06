@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Job.
+    -->
+    <changeSet id="20190403220000-1" author="lamle">
+        <createTable tableName="token_distribution">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)"/>
+
+            <column name="amount" type="DECIMAL"/>
+
+            <column name="nonce" type="integer" />
+
+            <column name="signed_data" type="varchar">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="transaction_hash" type="varchar" />
+
+            <column name="mined" type="boolean">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="network" type="varchar">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="transaction_receipt_id" type="bigint" />
+
+        </createTable>
+
+        <createTable tableName="transaction_receipt">
+
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="transaction_hash" type="varchar">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="transaction_index" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="block_hash" type="varchar">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="block_number" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="gas_used" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="from" type="varchar">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="to" type="varchar">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

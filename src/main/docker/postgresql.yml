@@ -1,0 +1,11 @@
+version: '2'
+services:
+    triip_chainnet-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/triip_chainnet/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=triip_chainnet
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

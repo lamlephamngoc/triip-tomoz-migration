@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181124065148_added_entity_Transaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181124065149_added_entity_TransferEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181124065150_added_entity_Job.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181124065148_added_entity_constraints_Transaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181124065149_added_entity_constraints_TransferEvent.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <include file="config/liquibase/changelog/20181126073000_update_job_table_transaction_callback_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181127233000_job_block_number_to_bigint.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181226223000_update_transaction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181227050000_transaction_correct_data_type_for_big_integer.xml" relativeToChangelogFile="false"/>
+
+    <!--token distribution-->
+    <include file="config/liquibase/changelog/20190403220000_token_distribution_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190403220001_token_distribution_schema_add_callback.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190403220002_token_distribution_schema_add_tx_error.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190422094500_broadcast_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190426093000_broadcast_created_at_updated_at.xml" relativeToChangelogFile="false"/>
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+version: '2'
+services:
+  database:
+    image: postgres:9.5.2
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: triip_chainnet
+      POSTGRES_PASSWORD: triip
+      POSTGRES_USER: triip
+    volumes:
+    - /root/triip/data/:/var/lib/postgresql/data/
+    ports:
+    - 5432:5432/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  backend-app:
+    image: repo.treescale.com/triip/triip_chainnet:1.0.6
+    environment:
+      DB_ADDRESS: database.hq.rancher.internal
+      DB_PORT: '5432'
+      DB_NAME: triip_chainnet
+      DB_USERNAME: triip
+      DB_PASSWORD: triip
+      DB_SERVICE: postgres
+      SPRING_PROFILES_ACTIVE: dev,swagger
+      _JAVA_OPTIONS: -Xmx1G -Xms1G
+    labels:
+      io.rancher.container.pull_image: always
+  triip-explorer:
+    image: repo.treescale.com/triip/triip-explorer:1.0.1
+    labels:
+      io.rancher.container.pull_image: always      
+  backend-lb:
+    image: rancher/lb-service-haproxy:v0.9.6
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'

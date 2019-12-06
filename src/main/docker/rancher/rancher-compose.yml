@@ -1,0 +1,41 @@
+version: '2'
+services:
+    database:
+        scale: 1
+        start_on_create: true
+    backend-app:
+        scale: 1
+        start_on_create: true
+    backend-lb:
+        scale: 1
+        start_on_create: true
+        lb_config:
+            certs: []
+            config: |-
+                defaults
+                        retries 3
+                        timeout connect 3600000
+                        timeout client 3600000
+                        timeout server 3600000
+            port_rules:
+            - hostname: 178.128.216.90
+              path: /
+              priority: 20
+              protocol: http
+              service: backend-app
+              source_port: 8080
+              target_port: 8080
+            - hostname: explorer.triip.me
+                path: /
+                priority: 2
+                protocol: http
+                service: hq/triip-explorer
+                source_port: 80
+                target_port: 3000
+        health_check:
+            healthy_threshold: 2
+            response_timeout: 2000
+            port: 42
+            unhealthy_threshold: 3
+            interval: 2000
+            strategy: recreate
